@@ -14,18 +14,18 @@ public class bookDao {
         PreparedStatement statement = null;
         ResultSet resultset = null;
         booksManagement b = null;
-        
+
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			 
+
 			String URL = "jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr";
 			String dbUserId = "books_id01";
 			String dbPassword = "books_pw01";
-			
+
 			connection = DriverManager.getConnection(URL, dbUserId, dbPassword);
-		
+
 			System.out.println("데이터 베이스 연결");
-		
+
 			statement = connection.prepareStatement("SELECT * FROM books_management WHERE info=?");
 			statement.setInt(1, bid);
 			resultset = statement.executeQuery();
@@ -36,7 +36,7 @@ public class bookDao {
 			b.setBook_name(resultset.getString("book_name"));
 			b.setBook_writer(resultset.getString("book_writer"));
 			b.setBook_publisher(resultset.getString("book_publisher"));
-			b.setBook_date(resultset.getString("book_date"));
+			b.setBook_record_date(resultset.getString("book_record_date"));
 		}
 		} catch(SQLException | ClassNotFoundException a) {
 			System.out.println(a.getMessage() + "<-- catch");
@@ -202,7 +202,7 @@ public class bookDao {
             	management.setBook_name(resultset.getString("book_name"));
             	management.setBook_writer(resultset.getString("book_writer"));
             	management.setBook_publisher(resultset.getString("book_publisher"));
-            	management.setBook_date(resultset.getString("book_date"));
+            	management.setBook_record_date(resultset.getString("book_record_date"));
             	bookList.add(management);
             }
         } catch(SQLException | ClassNotFoundException a) {
@@ -274,7 +274,7 @@ public class bookDao {
 	
 		System.out.println("데이터 베이스 연결");
 		
-		statement = connection.prepareStatement("INSERT INTO books_management(book_cate, book_name, book_writer, book_publisher, book_date) VALUES (?,?,?,?,now())");
+		statement = connection.prepareStatement("INSERT INTO books_management(book_cate, book_name, book_writer, book_publisher, book_record_date) VALUES (?,?,?,?,now())");
 		statement.setString(1, b.getBook_cate());
 		statement.setString(2, b.getBook_name());
 		statement.setString(3, b.getBook_writer());

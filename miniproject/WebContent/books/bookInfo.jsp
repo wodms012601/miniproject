@@ -36,7 +36,7 @@
 	</tr>
 	<tr>
 		<th>등록날짜</th>
-		<td><%=b.getBook_date()%></td>
+		<td><%=b.getBook_record_date()%></td>
 	</tr>
 	<tr>
 		<th>대여하기</th>

@@ -56,7 +56,7 @@
                     <td><%=a.getBook_name()%></td>
                     <td><%=a.getBook_writer()%></td>
                     <td><%=a.getBook_publisher()%></td>
-                    <td><%=a.getBook_date()%></td>
+                    <td><%=a.getBook_record_date()%></td>
                     <td><a href="bookInfo.jsp?send_id=<%=a.getInfo()%>">상세정보</a></td>
                     <td><a href="deleteBookAction.jsp?send_id=<%=a.getInfo()%>">삭제</a></td>
                     <td><a href="updateBookForm.jsp?send_id=<%=a.getInfo()%>">수정</a></td>
