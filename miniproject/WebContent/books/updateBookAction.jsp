@@ -15,8 +15,6 @@
 	b.setBook_name(request.getParameter("book_name"));
 	b.setBook_writer(request.getParameter("book_writer"));
 	b.setBook_publisher(request.getParameter("book_publisher"));
-	b.setBook_short(request.getParameter("book_short"));
-	b.setBook_contents(request.getParameter("book_contents"));
 
 	bookDao bookdao = new bookDao();
 	

@@ -21,14 +21,6 @@
 				<td><input type="text" name="book_writer"></td>
 			</tr>
 			<tr>
-				<td>책 내용 요약</td>
-				<td><input type="text" name="book_short"></td>
-			</tr>
-			<tr>
-				<td>책 내용</td>
-				<td><input type="text" name="book_contents"></td>
-			</tr>
-			<tr>
 				<td>책 출판사</td>
 				<td><input type="text" name="book_publisher"></td>
 			</tr>

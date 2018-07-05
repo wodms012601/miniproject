@@ -18,5 +18,6 @@
 	MemberDao dao = new MemberDao();
 	dao.updateMember(member);
 	
+	//모든 처리가 끝나면 회원리스트로
 	response.sendRedirect(request.getContextPath()+"/Member/memberList.jsp");
 %>

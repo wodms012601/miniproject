@@ -3,6 +3,7 @@
 <%@ page import = "member.*" %>
 <!DOCTYPE html>
 <%
+	//회원리스트페이지에서 받은 no값
 	int MemberNo = Integer.parseInt(request.getParameter("no"));
 	
 	MemberDao dao = new MemberDao();

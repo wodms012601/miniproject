@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page import = "books.*" %>
+<%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
+<%
+	int currentPage = 1;
+	int pagePerRow = 4;
+	String mName = (String)session.getAttribute("mName"); //로그인 후 세션에 저장한 이름값
+	
+	bookDao dao = new bookDao();
+	ArrayList<booksManagement> bookList = dao.selectBookList(currentPage, pagePerRow);
+%>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -7,7 +17,6 @@
 		<link rel="stylesheet" type="text/css" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 	</head>
-
 	<body>
 		<header>
 			<section id="top">
@@ -64,23 +73,33 @@
 			
 			<section id="cat3">
 				<div> <!-- 로그인 폼 만들 화면 -->
-					<form action="<%=request.getContextPath() %>/Member/loginPro.jsp">
-						<article id="login_box">
-							<img id="login_title" src="img/ttl_login.png">
+					<article id="login_box">
+						<img id="login_title" src="img/ttl_login.png">
+					<%
+						if(mName != null){
+					%>
+						<div><%=mName %>님 어서오세요.</div>
+					<%
+						} else {
+					%>
+						<form action="<%=request.getContextPath() %>/Member/loginPro.jsp" method="post">
 							<div id="input_button">
 								<ul id="login_input">
 									<li><input type="text" name="id"></li>
 									<li><input type="password" name="pw"></li>	
 								</ul>
-								<img id="login_btn" src="img/btn_login.gif">
+								<input type="image" src="img/btn_login.gif" id="login_btn">
 							</div>
-							<div class="clear"></div>
-							<div id="join_search">
-								<img src="img/btn_join.gif">
-								<img src="img/btn_search1.gif">
-							</div>
-						</article>
-					</form>
+						</form>
+						<div class="clear"></div>
+						<div id="join_search">
+							<a href="<%=request.getContextPath() %>/Member/insertMemberForm.jsp"><img src="img/btn_join.gif"></a>
+							<img src="img/btn_search1.gif">
+						</div>
+					<%
+						}
+					%>
+					</article>
 				</div>
 				<div id="week_event">
 					<img src="img/img3.jpg">
@@ -116,49 +135,20 @@
 			</section>
 			
 			<section id="new">
-				<div class="item">
-<%
-	request.setCharacterEncoding("EUC_KR");
-	
-	String abc = "imgF";
-	String def = "imgE";
-	String ghi = "imgG";
-	String jkl = "imgK";
-%>					
+			<%
+				for(int i=0; i<bookList.size(); i++){
+			%>
+				<div class="item">	
 					<ul>	
-						<li><a href="./bookDetail.jsp?img4=<%=abc %>" ><input type="image" src="img/img4.PNG"></a></li>
-						<li class="subject">저자 : 탁재은</li>
-						<li class="comment">포르투칼에 관한 풍경의 모든것</li>
-						<li class="price">11,000원</li>
+						<li><a href="<%=request.getContextPath() %>/bookDetail.jsp?no=<%=bookList.get(i).getInfo() %>" ><input type="image" src="img/img4.PNG"></a></li>
+						<li class="subject">저자 : <%=bookList.get(i).getBook_writer() %></li>
+						<li class="comment">제목 : <%=bookList.get(i).getBook_name() %></li>
+						<li class="price">출판사 : <%=bookList.get(i).getBook_publisher() %></li>
 					</ul>
 				</div>
-				
-				<div class="item">
-					<ul>
-						<li><a href="./bookDetail.jsp?img5=<%=def %>"><input type="image" src="img/img5.PNG"></a></li>				
-						<li class="subject">저자 : 탁재은</li>
-						<li class="comment">널 지켜보고 있다!</li>
-						<li class="price">13,000원</li>
-					</ul>
-				</div>
-				
-				<div class="item">
-					<ul>
-						<li><a href="./bookDetail.jsp?img6=<%=ghi %>"><input type="image" src="img/img6.PNG"></a></li>
-						<li class="subject">저자 : 송원민</li>
-						<li class="comment">시바견에 대한 공감 이야기</li>
-						<li class="price">14,000원</li>
-					</ul>
-				</div>
-				
-				<div class="item">
-					<ul>
-						<li><a href="./bookDetail.jsp?img7=<%=jkl %>"><input type="image" src="img/img7.jpg"></a></li>
-						<li class="subject">저자 : 최윤석</li>
-						<li class="comment">베스트셀러 1위 기욤뮈소 작품</li>
-						<li class="price">18,000원</li>
-					</ul>
-				</div>
+			<%
+				}
+			%>
 			</section>
 		</section>
 	</body>
