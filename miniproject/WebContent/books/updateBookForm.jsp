@@ -36,5 +36,13 @@
 				<td>book_publisher</td>
 				<td><input type="text" name="book_publisher" value=<%=b.getBook_publisher()%>></td>
 			</tr>
+			<tr>
+				<td>book_short</td>
+				<td><input type="text" name="book_short" value=<%=b.getBook_short()%>></td>
+			</tr>
+			<tr>
+				<td>book_contents</td>
+				<td><input type="text" name="book_contents" value=<%=b.getBook_contents()%>></td>
+			</tr>
 		</table>
 	<input type="submit" value="수정">

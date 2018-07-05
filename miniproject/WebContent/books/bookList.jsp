@@ -20,16 +20,7 @@
 	int beginRow = (currentPage-1)*pagePerRow;
 	ArrayList<booksManagement> bookList = bookdao.selectBookList(beginRow, pagePerRow);
 %>
- 
-    <div>전체행의 수 : <%=totalRowCount%> / 현재행의 수: <%=bookList.size()%></div>
-    
-    <form>
-    	<div>
-    		<input type = "text" name="search">
-    		<button type = "button">검색</button>
-    	</div>
-    </form>
-    
+       
     <a href="insertBookForm.jsp">등록화면으로 이동</a><br><br>
     
     <table border="1">
