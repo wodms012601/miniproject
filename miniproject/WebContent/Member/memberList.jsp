@@ -25,8 +25,9 @@
 			</tr>
 		<%
 			for(int i=0; i<memberList.size(); i++){
-		%>
+		%>	
 			<tr>
+				
 				<td><%=memberList.get(i).getMemberNo() %></td>
 				<td><%=memberList.get(i).getId() %></td>
 				<td><%=memberList.get(i).getName() %></td>
@@ -38,6 +39,10 @@
 			</tr>
 		<%
 			}
+		%>
+		
+		<%
+			
 		%>
 		</table>
 	</body>
