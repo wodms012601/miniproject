@@ -20,7 +20,6 @@
 <body>
 <%
 	String mName = (String)session.getAttribute("mName");
-
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null) {
 	    currentPage = Integer.parseInt(request.getParameter("currentPage"));

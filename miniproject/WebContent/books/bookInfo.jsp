@@ -35,6 +35,14 @@
 		<td><%=b.getBook_publisher()%></td>
 	</tr>
 	<tr>
+		<th>책 내용 요약</th>
+		<td><%=b.getBook_short()%></td>
+	</tr>
+	<tr>
+		<th>내용</th>
+		<td><%=b.getBook_contents()%></td>
+	</tr>
+	<tr>
 		<th>등록날짜</th>
 		<td><%=b.getBook_record_date()%></td>
 	</tr>

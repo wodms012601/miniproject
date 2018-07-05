@@ -214,6 +214,8 @@ public class bookDao {
 			b.setBook_name(resultset.getString("book_name"));
 			b.setBook_writer(resultset.getString("book_writer"));
 			b.setBook_publisher(resultset.getString("book_publisher"));
+			b.setBook_short(resultset.getString("book_short"));
+			b.setBook_contents(resultset.getString("book_contents"));
 			b.setBook_record_date(resultset.getString("book_record_date"));
 		}
 		} catch(SQLException | ClassNotFoundException a) {
