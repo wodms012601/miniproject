@@ -31,11 +31,40 @@
 	int beginRow = (currentPage-1)*pagePerRow;
 	ArrayList<booksManagement> bookList = bookdao.selectBookList(beginRow, pagePerRow);
 %>
+	<header>
+		<section id="top">
+			<a id="logo" href="<%=request.getContextPath() %>/indexed.jsp"><img src="<%=request.getContextPath() %>/img/logo.gif"></a>
+			<div id="search">
+				<div id="search_title">도서검색</div>
+				<div id="search_form"><input type="text"></div>
+				<div id="search_button"><img src="<%=request.getContextPath() %>/img/btn_search.gif"></div>
+			</div>
+			<nav id="top_menu">
+				<ul>
+					<li><a href="#">마이페이지</a></li>
+					<li><a href="#">이용안내</a></li>
+					<li><a href="#">고객센터</a></li>
+				</ul>
+			</nav>
+			<div class="clear"></div>
+		</section>
+		
+		<nav id="main_menu">
+			<ul>
+				<li><a href="">추천도서</a></li>
+				<li><a href="">고객갤러리</a></li>
+				<li><a href="">무료도서</a></li>
+				<li><a href="">유료도서</a></li>
+				<li><a href="">자주하는질문</a></li>
+			</ul>
+		</nav>
+	</header>
+	
 	<section id="main">
 		    <table border="1" id="ta">
 		        <thead>
 		            <tr>
-		                <th>ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹㅇㄴㄹㅇㄴㄹㄴㄹㄹㄴㄹㄴㄹ</th>
+		                <th>info</th>
 		                <th>cate</th>
 		                <th>name</th>
 		                <th>writer</th>
@@ -66,7 +95,6 @@
 %>
         		</tbody>
     		</table>
-    		<input type="text">
 <%
     int lastPage = totalRowCount/pagePerRow;
     if(totalRowCount%pagePerRow != 0) {
