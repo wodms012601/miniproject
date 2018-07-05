@@ -6,6 +6,8 @@ public class booksManagement {
 	private String book_name;
 	private String book_writer;
 	private String book_publisher;
+	private String book_short;
+	private String book_contents;
 	private String book_record_date;
 	public int getInfo() {
 		return info;
@@ -37,6 +39,18 @@ public class booksManagement {
 	public void setBook_publisher(String book_publisher) {
 		this.book_publisher = book_publisher;
 	}
+	public String getBook_short() {
+		return book_short;
+	}
+	public void setBook_short(String book_short) {
+		this.book_short = book_short;
+	}
+	public String getBook_contents() {
+		return book_contents;
+	}
+	public void setBook_contents(String book_contents) {
+		this.book_contents = book_contents;
+	}
 	public String getBook_record_date() {
 		return book_record_date;
 	}
@@ -46,7 +60,8 @@ public class booksManagement {
 	@Override
 	public String toString() {
 		return "booksManagement [info=" + info + ", book_cate=" + book_cate + ", book_name=" + book_name
-				+ ", book_writer=" + book_writer + ", book_publisher=" + book_publisher + ", book_record_date="
-				+ book_record_date + "]";
+				+ ", book_writer=" + book_writer + ", book_publisher=" + book_publisher + ", book_short=" + book_short
+				+ ", book_contents=" + book_contents + ", book_record_date=" + book_record_date + "]";
 	}
+	
 }
