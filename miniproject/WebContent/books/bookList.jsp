@@ -31,11 +31,14 @@
 	int beginRow = (currentPage-1)*pagePerRow;
 	ArrayList<booksManagement> bookList = bookdao.selectBookList(beginRow, pagePerRow);
 %>
+	<div>
+		<a href="#"></a>
+	</div>
 	<section id="main">
 		    <table border="1" id="ta">
 		        <thead>
 		            <tr>
-		                <th>ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹㅇㄴㄹㅇㄴㄹㄴㄹㄹㄴㄹㄴㄹ</th>
+		                <th>insofksofkosdk</th>
 		                <th>cate</th>
 		                <th>name</th>
 		                <th>writer</th>
@@ -66,7 +69,6 @@
 %>
         		</tbody>
     		</table>
-    		<input type="text">
 <%
     int lastPage = totalRowCount/pagePerRow;
     if(totalRowCount%pagePerRow != 0) {
