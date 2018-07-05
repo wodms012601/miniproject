@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MemberDao {
 	
-	//db에 회원정보 저장처리
+	//db에 회원정보 저장처리하는 메서드
 	public void insertMember(Member member) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -54,7 +54,7 @@ public class MemberDao {
 		}
 	}
 	
-	//회원정보 리스트처리
+	//회원정보 리스트처리하는 메서드
 	public ArrayList<Member> listMember() {
 		ArrayList<Member> memberList = new ArrayList<Member>(); //객체의 주소값들을 담는 배열객체 생성
 		Connection conn = null;

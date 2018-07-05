@@ -1,4 +1,4 @@
-/*2018.07.04 Å¹ÀçÀº*/
+/*2018.07.04 Tak*/
 package member;
 
 public class Member {

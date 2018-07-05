@@ -40,7 +40,7 @@
 				<table>
 					<tr><!-- 아이디  -->
 						<td>
-							<img src="<%=request.getContextPath() %>/image/check_icon.gif">
+							<img src="<%=request.getContextPath() %>/Image/check_icon.gif">
 						</td>
 						<td>
 							아이디 : &nbsp;
@@ -54,7 +54,7 @@
 					</tr>
 					<tr><!-- 비밀번호  -->
 						<td>
-							<img src="<%=request.getContextPath() %>/image/check_icon.gif">
+							<img src="<%=request.getContextPath() %>/Image/check_icon.gif">
 						</td>
 						<td>
 							비밀번호 : &nbsp;
@@ -65,7 +65,7 @@
 					</tr>
 					<tr><!-- 비밀번호 확인  -->
 						<td>
-							<img src="<%=request.getContextPath() %>/image/check_icon.gif">
+							<img src="<%=request.getContextPath() %>/Image/check_icon.gif">
 						</td>
 						<td>
 							비밀번호 확인 : &nbsp;
@@ -87,7 +87,7 @@
 				<table>
 					<tr><!-- 이름 -->
 						<td>
-							<img src="<%=request.getContextPath() %>/image/check_icon.gif">
+							<img src="<%=request.getContextPath() %>/Image/check_icon.gif">
 						</td>
 						<td>
 							이름 : &nbsp;
@@ -98,7 +98,7 @@
 					</tr>
 					<tr><!-- 성별 -->
 						<td>
-							<img src="<%=request.getContextPath() %>/image/check_icon.gif">
+							<img src="<%=request.getContextPath() %>/Image/check_icon.gif">
 						</td>
 						<td>
 							성별 : &nbsp;
@@ -110,7 +110,7 @@
 					</tr>
 					<tr><!-- 주소 -->
 						<td>
-							<img src="<%=request.getContextPath() %>/image/check_icon.gif">
+							<img src="<%=request.getContextPath() %>/Image/check_icon.gif">
 						</td>
 						<td>
 							주소 : &nbsp;

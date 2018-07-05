@@ -64,21 +64,23 @@
 			
 			<section id="cat3">
 				<div> <!-- 로그인 폼 만들 화면 -->
-					<article id="login_box">
-						<img id="login_title" src="img/ttl_login.png">
-						<div id="input_button">
-							<ul id="login_input">
-								<li><input type="text"></li>
-								<li><input type="password"></li>	
-							</ul>
-							<img id="login_btn" src="img/btn_login.gif">
-						</div>
-						<div class="clear"></div>
-						<div id="join_search">
-							<img src="img/btn_join.gif">
-							<img src="img/btn_search1.gif">
-						</div>
-					</article>
+					<form action="<%=request.getContextPath() %>/Member/loginPro.jsp">
+						<article id="login_box">
+							<img id="login_title" src="img/ttl_login.png">
+							<div id="input_button">
+								<ul id="login_input">
+									<li><input type="text" name="id"></li>
+									<li><input type="password" name="pw"></li>	
+								</ul>
+								<img id="login_btn" src="img/btn_login.gif">
+							</div>
+							<div class="clear"></div>
+							<div id="join_search">
+								<img src="img/btn_join.gif">
+								<img src="img/btn_search1.gif">
+							</div>
+						</article>
+					</form>
 				</div>
 				<div id="week_event">
 					<img src="img/img3.jpg">
