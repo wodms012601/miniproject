@@ -35,7 +35,7 @@
 		    <table border="1" id="ta">
 		        <thead>
 		            <tr>
-		                <th>info</th>
+		                <th>ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹㅇㄴㄹㅇㄴㄹㄴㄹㄹㄴㄹㄴㄹ</th>
 		                <th>cate</th>
 		                <th>name</th>
 		                <th>writer</th>
@@ -66,6 +66,7 @@
 %>
         		</tbody>
     		</table>
+    		<input type="text">
 <%
     int lastPage = totalRowCount/pagePerRow;
     if(totalRowCount%pagePerRow != 0) {
