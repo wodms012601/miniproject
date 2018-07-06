@@ -10,6 +10,56 @@ import java.sql.ResultSet;
 public class bookDao {
 	
 	
+	public ArrayList<booksManagement> selectSearchSv(booksManagement b, String sk, String sv) { // 모든 컬럼 검색 (포함되는 글자 가능)
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultset = null;
+        
+		ArrayList<booksManagement> alt = new ArrayList<>();
+		
+        try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String URL = "jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr";
+			String dbUserId = "books_id01";
+			String dbPassword = "books_pw01";
+
+			connection = DriverManager.getConnection(URL, dbUserId, dbPassword);
+
+			System.out.println("데이터 베이스 연결");
+
+			statement = connection.prepareStatement("SELECT info, book_cate, book_name, book_writer, book_publisher, book_record_date"
+				+" FROM books_management "
+				+" WHERE "+ sk +" like '%" + sv + "%' ");
+		
+			resultset = statement.executeQuery();
+		
+		while(resultset.next()) {
+			b = new booksManagement();
+			b.setInfo(resultset.getInt(1));
+			b.setBook_cate(resultset.getString(2));
+			b.setBook_name(resultset.getString(3));
+			b.setBook_writer(resultset.getString(4));
+			b.setBook_publisher(resultset.getString(5));
+			b.setBook_record_date(resultset.getString(6));
+			
+			alt.add(b);
+		}
+		} catch(SQLException | ClassNotFoundException a) {
+			System.out.println(a.getMessage() + "<-- catch");
+			
+		} finally{
+			
+			try {
+				if(statement != null) statement.close();
+				if(connection != null) connection.close();
+			}
+			catch(SQLException a) {
+				System.out.println(a.getMessage() + "<-- catch");
+			}
+		}
+		return alt;	
+	}
 	
 	public ArrayList<booksManagement> selectSearchSv(booksManagement b, String sv) { // 책 이름만 검색 (포함되는 글자 가능)
         Connection connection = null;
@@ -62,10 +112,11 @@ public class bookDao {
 		return alt;	
 	}
 	
-	public ArrayList<booksManagement> selectSearchDate(String begin, String end, String sk, String sv) { // 날짜와 책 이름 검색 (바르게 입력)
+	public ArrayList<booksManagement> selectSearchDate(String begin, String end, String sk, String sv) { // 날짜와 책 이름 검색 (포함되는 문자 가능)
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultset = null;
+        booksManagement b = null;
         
 		int beginYear = Integer.parseInt(begin.substring(0, 4));
 		int beginMonth = Integer.parseInt(begin.substring(5, 7));
@@ -92,23 +143,20 @@ public class bookDao {
 				+" WHERE (year(book_record_date) >= " + beginYear + ") AND (year(book_record_date) <= " + endYear + ")"
 				+" AND (month(book_record_date) >= " + beginMonth + ") AND (month(book_record_date) <= " + endMonth + ")"
 				+" AND (day(book_record_date) >= " + beginDay + ") and (day(book_record_date) <= " + endDay + ")"
-				+" AND " + sk + " = ?");
-		
-			statement.setString(1, sv);
-		
-			resultset = statement.executeQuery();
-		
-		while(resultset.next()) {
-			booksManagement b = new booksManagement();
-			b = new booksManagement();
-			b.setInfo(resultset.getInt(1));
-			b.setBook_cate(resultset.getString(2));
-			b.setBook_name(resultset.getString(3));
-			b.setBook_writer(resultset.getString(4));
-			b.setBook_publisher(resultset.getString(5));
-			b.setBook_record_date(resultset.getString(6));
+				+" AND "+ sk +" like '%" + sv + "%' ");
 			
-			alt.add(b);
+			resultset = statement.executeQuery();
+				
+			while(resultset.next()) {
+				b = new booksManagement();
+				b.setInfo(resultset.getInt(1));
+				b.setBook_cate(resultset.getString(2));
+				b.setBook_name(resultset.getString(3));
+				b.setBook_writer(resultset.getString(4));
+				b.setBook_publisher(resultset.getString(5));
+				b.setBook_record_date(resultset.getString(6));
+				
+				alt.add(b);
 		}
 		} catch(SQLException | ClassNotFoundException a) {
 			System.out.println(a.getMessage() + "<-- catch");
@@ -123,9 +171,9 @@ public class bookDao {
 				System.out.println(a.getMessage() + "<-- catch");
 			}
 		}
-		return alt;	
+		return alt;
 	}
-	
+		
 	public ArrayList<booksManagement> selectSearchDate(String begin, String end) { // 날짜만 입력해서 게시글 검색
         Connection connection = null;
         PreparedStatement statement = null;

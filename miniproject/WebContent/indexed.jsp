@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ page import = "books.*" %>
-<%@ page import = "member.*" %>
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <%
-	int currentPage = 0;
+	int currentPage = 1;
 	int pagePerRow = 4;
-	String mId = (String)session.getAttribute("mId"); //로그인 후 세션에 저장한 아이디값
 	String mName = (String)session.getAttribute("mName"); //로그인 후 세션에 저장한 이름값
 	
 	bookDao dao = new bookDao();
 	ArrayList<booksManagement> bookList = dao.selectBookList(currentPage, pagePerRow);
-	
-	MemberDao mDao = new MemberDao();
-	Member member = mDao.selectMember(mId); //회원 검색 메서드 호출 (메서드 오버로딩 사용)
 %>
 <html>
 	<head>
@@ -27,26 +22,12 @@
 			<section id="top">
 				<a id="logo" href="./indexed.jsp"><img src="img/logo.gif"></a>
 				<div id="search">
-					<div id="search_title">도서검색</div>
-					<div id="search_form"><input type="text"></div>
+					<div id="search_title"><a href="<%=request.getContextPath() %>/books/selectBookSearch.jsp?no=go">도서검색</div>
 					<div id="search_button"><img src="img/btn_search.gif"></div>
 				</div>
 				<nav id="top_menu">
 					<ul>
-				<%
-					if(mId != null){
-						if("id001".equals(mId)){
-				%>
-							<li><a href="<%=request.getContextPath() %>/Member/memberList.jsp">회원리스트</a></li>
-				<%
-						}
-						if(mId.equals(member.getId())){
-				%>
-							<li><a href="<%=request.getContextPath() %>/Member/updateMemberForm.jsp?no=<%=member.getMemberNo() %>">내정보수정</a></li>
-				<%
-						}
-					}
-				%>
+						<li><a href="#">마이페이지</a></li>
 						<li><a href="#">이용안내</a></li>
 						<li><a href="#">고객센터</a></li>
 					</ul>
@@ -57,7 +38,7 @@
 			<nav id="main_menu">
 				<ul>
 					<li><a href="">추천도서</a></li>
-					<li><a href="<%=request.getContextPath() %>/books/bookList.jsp">도서리스트</a></li>
+					<li><a href="">고객갤러리</a></li>
 					<li><a href="">무료도서</a></li>
 					<li><a href="">유료도서</a></li>
 					<li><a href="">자주하는질문</a></li>
