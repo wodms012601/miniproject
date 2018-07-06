@@ -17,7 +17,7 @@
 			<section id="top">
 				<a id="logo" href="<%=request.getContextPath() %>/indexed.jsp"><img src="<%=request.getContextPath() %>/img/logo.gif"></a>
 				<div id="search">
-					<div id="search_title">도서검색</div>
+					<div id="search_title"><a href="<%=request.getContextPath() %>/books/selectBookSearch.jsp">도서검색</a></div>
 					<div id="search_form"><input type="text"></div>
 					<div id="search_button"><img src="<%=request.getContextPath() %>/img/btn_search.gif"></div>
 				</div>
