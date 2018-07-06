@@ -31,9 +31,9 @@ public class bookDao {
 			statement = connection.prepareStatement("SELECT info, book_cate, book_name, book_writer, book_publisher, book_record_date"
 				+" FROM books_management "
 				+" WHERE "+ sk +" like '%" + sv + "%' ");
-		
+
 			resultset = statement.executeQuery();
-		
+
 		while(resultset.next()) {
 			b = new booksManagement();
 			b.setInfo(resultset.getInt(1));

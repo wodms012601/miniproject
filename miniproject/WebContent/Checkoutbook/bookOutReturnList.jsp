@@ -17,8 +17,7 @@
 			<section id="top">
 				<a id="logo" href="<%=request.getContextPath() %>/indexed.jsp"><img src="<%=request.getContextPath() %>/img/logo.gif"></a>
 				<div id="search">
-					<div id="search_title"><a href="<%=request.getContextPath() %>/books/selectBookSearch.jsp">도서검색</a></div>
-					<div id="search_form"><input type="text"></div>
+					<div id="search_title"><a href="<%=request.getContextPath() %>/books/selectBookSearch.jsp"><input type="image" src="../img/Search.PNG"></a></div>
 					<div id="search_button"><img src="<%=request.getContextPath() %>/img/btn_search.gif"></div>
 				</div>
 				<nav id="top_menu">
@@ -43,6 +42,9 @@
 		</header>
 		
 		<section id="main">
+		<br>
+		<br>
+		<br>
 			<table border="1">
 				<tr>
 					<th>기록코드</th>
