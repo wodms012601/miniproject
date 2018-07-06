@@ -24,6 +24,14 @@
 				<td>책 출판사</td>
 				<td><input type="text" name="book_publisher"></td>
 			</tr>
+			<tr>
+				<td>책 내용 요약</td>
+				<td><input type="text" name="book_short"></td>
+			</tr>
+			<tr>
+				<td>책 내용</td>
+				<td><input type="text" name="book_contents"></td>
+			</tr>
 		</table>
 		<input type="submit" value="책 리스트 등록">
 	</form>
