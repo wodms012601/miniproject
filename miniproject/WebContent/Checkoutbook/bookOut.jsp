@@ -17,6 +17,8 @@
 	BookOutReturn bookOut = new BookOutReturn();
 	bookOut.checkOut(books, mId); //대출 처리 메서드를 호출
 	
+	System.out.println("대출완료");
+	
 	//모든 처리가 끝나면 대출,반납리스트로 이동
 	response.sendRedirect(request.getContextPath() + "/Checkoutbook/bookOutReturnList.jsp");
 %>

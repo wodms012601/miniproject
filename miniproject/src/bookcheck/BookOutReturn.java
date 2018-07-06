@@ -23,12 +23,13 @@ public class BookOutReturn {
 			System.out.println("연결 확인");
 			
 			//date_add()메서드를 사용해 빌린날짜로부터 2달 이후의 날짜를 입력한다.
-			pstmt = conn.prepareStatement("insert into books_out_in(m_id, book_cate, book_name, book_out_date, book_limit_date) values(?,?,?,now(),date_add(now(), interval 2 month))"); //쿼리문준비
+			pstmt = conn.prepareStatement("insert into books_out_in(m_id, book_info, book_cate, book_name, book_out_date, book_limit_date) values(?,?,?,?,now(),date_add(now(), interval 2 month))"); //쿼리문준비
 			
 			//1번 인덱스에는 세션에서 받은 아이디값
 			pstmt.setString(1, mId);
-			pstmt.setString(2, books.getBook_cate());
-			pstmt.setString(3, books.getBook_name());
+			pstmt.setInt(2, books.getInfo());
+			pstmt.setString(3, books.getBook_cate());
+			pstmt.setString(4, books.getBook_name());
 			
 			pstmt.executeUpdate(); //쿼리문 실행
 
@@ -65,7 +66,7 @@ public class BookOutReturn {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 			System.out.println("연결 확인");
 			
-			pstmt = conn.prepareStatement("update books_out_in set book_in_date=now() where logs=?"); //쿼리문준비
+			pstmt = conn.prepareStatement("update books_out_in set book_in_date=now() where book_info=?"); //쿼리문준비
 			
 			pstmt.setInt(1, bookNo);
 			
@@ -105,13 +106,14 @@ public class BookOutReturn {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 			System.out.println("연결 확인");
 			
-			pstmt = conn.prepareStatement("select logs, m_id, book_cate, book_name, book_out_date, book_limit_date, book_in_date from books_out_in"); //쿼리문준비
+			pstmt = conn.prepareStatement("select logs, book_info, m_id, book_cate, book_name, book_out_date, book_limit_date, book_in_date from books_out_in"); //쿼리문준비
 			
 			rs = pstmt.executeQuery(); //쿼리문 실행
 			
 			while(rs.next()) {
 				BookCheck book = new BookCheck(); //대출,반납 데이터가 들어갈수있는 객체 생성
 				book.setLogs(rs.getInt("logs")); //데이터 입력
+				book.setBookInfo(rs.getInt("book_info"));
 				book.setmId(rs.getString("m_id"));
 				book.setBookCate(rs.getString("book_cate"));
 				book.setBookName(rs.getString("book_name"));

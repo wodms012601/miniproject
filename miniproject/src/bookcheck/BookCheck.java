@@ -2,6 +2,7 @@ package bookcheck;
 
 public class BookCheck {
 	private int logs;
+	private int bookInfo;
 	private String mId;
 	private String bookCate;
 	private String bookName;
@@ -14,6 +15,12 @@ public class BookCheck {
 	}
 	public void setLogs(int logs) {
 		this.logs = logs;
+	}
+	public int getBookInfo() {
+		return bookInfo;
+	}
+	public void setBookInfo(int bookInfo) {
+		this.bookInfo = bookInfo;
 	}
 	public String getmId() {
 		return mId;

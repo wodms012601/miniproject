@@ -46,6 +46,7 @@
 			<table border="1">
 				<tr>
 					<th>기록코드</th>
+					<th>도서코드</th>
 					<th>회원아이디</th>
 					<th>도서카테고리</th>
 					<th>도서이름</th>
@@ -58,6 +59,7 @@
 			%>
 				<tr>
 					<td><%=bookList.get(i).getLogs() %></td>
+					<td><%=bookList.get(i).getBookInfo() %></td>
 					<td><%=bookList.get(i).getmId() %></td>
 					<td><%=bookList.get(i).getBookCate() %></td>
 					<td><%=bookList.get(i).getBookName() %></td>
