@@ -85,7 +85,7 @@
 	                    <td><%=a.getBook_writer()%></td>
 	                    <td><%=a.getBook_publisher()%></td>
 	                    <td><%=a.getBook_record_date()%></td>
-	                    <td><a href="<%=request.getContextPath() %>/bookDetail.jsp?info=<%=a.getInfo()%>">상세정보</a></td>
+	                    <td><a href="<%=request.getContextPath() %>/bookDetail.jsp?no=<%=a.getInfo()%>">상세정보</a></td>
 	                    <td><a href="deleteBookAction.jsp?send_id=<%=a.getInfo()%>">삭제</a></td>
 	                    <td><a href="updateBookForm.jsp?send_id=<%=a.getInfo()%>">수정</a></td>
 	                </tr>

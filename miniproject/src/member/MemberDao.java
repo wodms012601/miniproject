@@ -106,8 +106,8 @@ public class MemberDao {
 		return memberList;
 	}
 	
-	//회원수정 폼에서 이전에 적었던 정보들을 보여주기 위한 메서드
-	public Member updateMemberForm(int MemberNo) {
+	//한명의 회원정보를 검색하기 위한 메서드
+	public Member selectMember(int MemberNo) {
 		Member member = new Member(); //Member 객체 생성
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -119,15 +119,18 @@ public class MemberDao {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 			System.out.println("연결 확인");
 			
-			pstmt = conn.prepareStatement("select m_id, m_name, m_addr from member where member_no=?"); //쿼리문준비
+			pstmt = conn.prepareStatement("select member_no, m_id, m_name, m_addr from member where member_no=?"); //쿼리문준비
 			
 			pstmt.setInt(1, MemberNo);
 			
 			rs = pstmt.executeQuery(); //쿼리문 실행
 			
 			if(rs.next()) {
-				member.setId(rs.getString("m_id")); //ResultSet객체에 담긴 데이터를 Member클래스를 통해 생성된 객체에 저장
+				member.setMemberNo(rs.getInt("member_no")); //ResultSet객체에 담긴 데이터를 Member클래스를 통해 생성된 객체에 저장
+				member.setId(rs.getString("m_id"));
 				member.setName(rs.getString("m_name"));
+				member.setLevel(rs.getString("m_level"));
+				member.setGender(rs.getString("m_gender"));
 				member.setAddr(rs.getString("m_addr"));
 			}
 
@@ -153,6 +156,57 @@ public class MemberDao {
 		}
 		return member;
 	}
+	
+	//한명의 회원정보를 검색하기 위한 메서드(메서드 오버로딩)
+		public Member selectMember(String mId) {
+			Member member = new Member(); //Member 객체 생성
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				Class.forName("com.mysql.jdbc.Driver"); //드라이버 로딩
+					
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
+				System.out.println("연결 확인");
+				
+				pstmt = conn.prepareStatement("select member_no, m_id, m_name, m_addr from member where m_id=?"); //쿼리문준비
+				
+				pstmt.setString(1, mId);
+				
+				rs = pstmt.executeQuery(); //쿼리문 실행
+				
+				if(rs.next()) {
+					member.setMemberNo(rs.getInt("member_no")); //ResultSet객체에 담긴 데이터를 Member클래스를 통해 생성된 객체에 저장
+					member.setId(rs.getString("m_id")); 
+					member.setName(rs.getString("m_name"));
+					member.setLevel(rs.getString("m_level"));
+					member.setGender(rs.getString("m_gender"));
+					member.setAddr(rs.getString("m_addr"));
+				}
+
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if(conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return member;
+		}
 	
 	//회원수정처리 메서드
 	public void updateMember(Member member) {

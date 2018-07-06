@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <%
 	MemberDao dao = new MemberDao();
-	ArrayList<Member> memberList = dao.listMember();
+	ArrayList<Member> memberList = dao.listMember(); //회원 리스트 메서드 호출
 %>
 <html>
 	<head>

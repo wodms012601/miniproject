@@ -7,7 +7,7 @@
 	int MemberNo = Integer.parseInt(request.getParameter("no"));
 	
 	MemberDao dao = new MemberDao();
-	Member member = dao.updateMemberForm(MemberNo);
+	Member member = dao.selectMember(MemberNo);
 %>
 <html>
 	<head>
