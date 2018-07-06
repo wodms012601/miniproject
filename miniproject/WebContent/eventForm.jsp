@@ -1,23 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "books.*" %>
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
-<%
-	int currentPage = 0;
-	int pagePerRow = 4;
-	String mName = (String)session.getAttribute("mName"); //·Î±×ÀÎ ÈÄ ¼¼¼Ç¿¡ ÀúÀåÇÑ ÀÌ¸§°ª
-	
-	bookDao dao = new bookDao();
-	ArrayList<booksManagement> bookList = dao.selectBookList(currentPage, pagePerRow);
-%>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-		<title>1Á¶ ÇÁ·ÎÁ§Æ®</title>
+		<title>1ì¡° í”„ë¡œì íŠ¸</title>
 		<link rel="stylesheet" type="text/css" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 	</head>
 	<body>
+<%
+	int currentPage = 0;
+	int pagePerRow = 4;
+	String mName = (String)session.getAttribute("mName"); //ë¡œê·¸ì¸ í›„ ì„¸ì…˜ì— ì €ìž¥í•œ ì´ë¦„ê°’
+	
+	bookDao dao = new bookDao();
+	ArrayList<booksManagement> bookList = dao.selectBookList(currentPage, pagePerRow);
+%>
 		<header>
 			<section id="top">
 				<a id="logo" href="./indexed.jsp"><img src="img/logo.gif"></a>
@@ -27,9 +27,9 @@
 				</div>
 				<nav id="top_menu">
 					<ul>
-						<li><a href="#">¸¶ÀÌÆäÀÌÁö</a></li>
-						<li><a href="#">ÀÌ¿ë¾È³»</a></li>
-						<li><a href="#">°í°´¼¾ÅÍ</a></li>
+						<li><a href="#">ë§ˆì´íŽ˜ì´ì§€</a></li>
+						<li><a href="#">ì´ìš©ì•ˆë‚´</a></li>
+						<li><a href="#">ê³ ê°ì„¼í„°</a></li>
 					</ul>
 				</nav>
 				<div class="clear"></div>
@@ -37,11 +37,11 @@
 			
 			<nav id="main_menu">
 				<ul>
-					<li><a href="">ÃßÃµµµ¼­</a></li>
-					<li><a href="">°í°´°¶·¯¸®</a></li>
-					<li><a href="">¹«·áµµ¼­</a></li>
-					<li><a href="">À¯·áµµ¼­</a></li>
-					<li><a href="">ÀÚÁÖÇÏ´ÂÁú¹®</a></li>
+					<li><a href="">ì¶”ì²œë„ì„œ</a></li>
+					<li><a href="">ê³ ê°ê°¤ëŸ¬ë¦¬</a></li>
+					<li><a href="">ë¬´ë£Œë„ì„œ</a></li>
+					<li><a href="">ìœ ë£Œë„ì„œ</a></li>
+					<li><a href="">ìžì£¼í•˜ëŠ”ì§ˆë¬¸</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -49,35 +49,40 @@
 		<section id="main">
 			<section id="cat1">
 				<div id="cat_title">
-					µµ¼­ºÐ·ù
+					ë„ì„œë¶„ë¥˜
 				</div>
 				<ul>
-					<li>¾×¼Ç/ÆÇÅ¸Áö</li>
-					<li>¹«Çù</li>
-					<li>ÄÚ¹Í</li>
-					<li>¿©Çà</li>
-					<li>¿ä¸®</li>
-					<li>°æÁ¦</li>
-					<li>½Ã,¹®ÇÐ</li>
-					<li>ÄÄÇ»ÅÍ</li>
-					<li>·Î¸Ç½º</li>
-					<li>¸¸È­</li>
-					<li>±âÅ¸</li>
+					<li>ì•¡ì…˜/íŒíƒ€ì§€</li>
+					<li>ë¬´í˜‘</li>
+					<li>ì½”ë¯¹</li>
+					<li>ì—¬í–‰</li>
+					<li>ìš”ë¦¬</li>
+					<li>ê²½ì œ</li>
+					<li>ì‹œ,ë¬¸í•™</li>
+					<li>ì»´í“¨í„°</li>
+					<li>ë¡œë§¨ìŠ¤</li>
+					<li>ë§Œí™”</li>
+					<li>ê¸°íƒ€</li>
 				</ul>
 			</section>
 			
 			<section id="cat2">
-				<img src="img/img1.gif">
+				<br>
+				<img src="img/Event01.gif">
+				<img src="img/Event02.gif"><br>
+				<img src="img/Event01.gif">
+				<img src="img/Event02.gif">
+			
 			</section>
 			
 			<section id="cat3">
-				<div> <!-- ·Î±×ÀÎ Æû ¸¸µé È­¸é -->
+				<div> <!-- ë¡œê·¸ì¸ í¼ ë§Œë“¤ í™”ë©´ -->
 					<article id="login_box">
 						<img id="login_title" src="img/ttl_login.png">
 					<%
 						if(mName != null){
 					%>
-						<div><%=mName %>´Ô ¾î¼­¿À¼¼¿ä.</div>
+						<div><%=mName %>ë‹˜ ì–´ì„œì˜¤ì„¸ìš”.</div>
 					<%
 						} else {
 					%>
@@ -100,9 +105,7 @@
 					%>
 					</article>
 				</div>
-				<div id="week_event" ><a href="<%=request.getContextPath() %>/eventForm.jsp">
-					<img src="img/img3.jpg"></a>
-				</div>
+				<div id="week_event" ><a href="<%=request.getContextPath() %>/eventForm.jsp"><img src="img/img3.jpg"></a></div>
 			</section>
 			
 			<section id="special_shop">
@@ -132,23 +135,21 @@
 					</ul>
 				</div>
 			</section>
-			
-			<section id="new">
+				<section id="new">
 			<%
 				for(int i=0; i<bookList.size(); i++){
 			%>
 				<div class="item">	
 					<ul>	
 						<li><a href="<%=request.getContextPath() %>/bookDetail.jsp?no=<%=bookList.get(i).getInfo() %>" ><input type="image" src="img/img4.PNG"></a></li>
-						<li class="subject">ÀúÀÚ : <%=bookList.get(i).getBook_writer() %></li>
-						<li class="comment">Á¦¸ñ : <%=bookList.get(i).getBook_name() %></li>
-						<li class="price">ÃâÆÇ»ç : <%=bookList.get(i).getBook_publisher() %></li>
+						<li class="subject">ì €ìž : <%=bookList.get(i).getBook_writer() %></li>
+						<li class="comment">ì œëª© : <%=bookList.get(i).getBook_name() %></li>
+						<li class="price">ì¶œíŒì‚¬ : <%=bookList.get(i).getBook_publisher() %></li>
 					</ul>
 				</div>
 			<%
 				}
 			%>
-			</section>
 		</section>
-	</body>
+</body>
 </html>
