@@ -14,7 +14,13 @@ public class BookOutReturn {
 	//대출 처리 메서드
 	public void checkOut(booksManagement books, String mId) { //책이름, 카테고리, 아이디,
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null; //도서대출입력용
+		PreparedStatement pstmt2 = null; //대출권수검색용
+		PreparedStatement pstmt3 = null; //대출유무 및 대출권수 입력용
+		ResultSet rs = null;
+		String check = "유"; //대출 유무
+		int bookCount = 0; //대출 권수
+		
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver"); //드라이버 로딩
@@ -32,6 +38,27 @@ public class BookOutReturn {
 			pstmt.setString(4, books.getBook_name());
 			
 			pstmt.executeUpdate(); //쿼리문 실행
+			
+			//book_count컬럼에 있는값 +1을 해서 검색한뒤 그 값을 변수에 저장
+			pstmt2 = conn.prepareStatement("select book_count+1 from member where m_id=?"); //쿼리문준비
+			
+			pstmt2.setString(1, mId);
+			
+			rs = pstmt2.executeQuery();
+			
+			if(rs.next()) {
+				bookCount = rs.getInt("book_count+1");
+				System.out.println(bookCount +"bookcount확인");
+			}
+			
+			//대출했을경우 회원정보 update 대출유무=유, 대출권수+=1
+			pstmt3 = conn.prepareStatement("update member set book_check=?, book_count=? where m_id=?"); //쿼리문준비
+			
+			pstmt3.setString(1, check);
+			pstmt3.setInt(2, bookCount);
+			pstmt3.setString(3, mId);
+			
+			pstmt3.executeUpdate(); //쿼리문 실행
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -56,9 +83,15 @@ public class BookOutReturn {
 	}
 	
 	//반납처리 리스트
-	public void checkIn(int bookNo) {
+	public void checkIn(int bookNo, String mId) { //책 넘버, 아이디
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null; //대출권수검색용
+		PreparedStatement pstmt3 = null; //대출유무 및 대출권수 입력용
+		ResultSet rs = null;
+		String checkt = "유"; //대출 유무
+		String checkf = "무"; //대출 유무
+		int bookCount = 0; //대출 권수
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver"); //드라이버 로딩
@@ -66,11 +99,38 @@ public class BookOutReturn {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 			System.out.println("연결 확인");
 			
+			//반납날짜 입력
 			pstmt = conn.prepareStatement("update books_out_in set book_in_date=now() where book_info=?"); //쿼리문준비
 			
 			pstmt.setInt(1, bookNo);
 			
 			pstmt.executeUpdate(); //쿼리문 실행
+			
+			//book_count컬럼에 있는값 -1을 해서 검색한뒤 그 값을 변수에 저장
+			pstmt2 = conn.prepareStatement("select book_count-1 from member where m_id=?"); //쿼리문준비
+			
+			pstmt2.setString(1, mId);
+			
+			rs = pstmt2.executeQuery();
+			
+			if(rs.next()) {
+				bookCount = rs.getInt("book_count-1");
+				System.out.println(bookCount +"bookcount확인");
+			}
+			
+			pstmt3 = conn.prepareStatement("update member set book_check=?, book_count=? where m_id=?"); //쿼리문준비
+			
+			if(bookCount == 0) { //대출권수가 1권이면  대출유무=무, 대출권수=0
+				pstmt3.setString(1, checkf);
+				pstmt3.setInt(2, bookCount);
+				pstmt3.setString(3, mId);
+			} else { //나머지는 대출유무=유, 대출권수=bookCount-1
+				pstmt3.setString(1, checkt);
+				pstmt3.setInt(2, bookCount);
+				pstmt3.setString(3, mId);
+			}
+			
+			pstmt3.executeUpdate(); //쿼리문 실행
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

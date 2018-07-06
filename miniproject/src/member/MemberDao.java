@@ -21,7 +21,7 @@ public class MemberDao {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 			System.out.println("연결 확인");
 			
-			pstmt = conn.prepareStatement("insert into member(m_id, m_pw, m_name, m_level, m_gender, m_addr) values(?,?,?,?,?,?)"); //쿼리문준비
+			pstmt = conn.prepareStatement("insert into member(m_id, m_pw, m_name, m_level, m_gender, m_addr, book_check, book_count) values(?,?,?,?,?,?,?,?)"); //쿼리문준비
 			
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPw());
@@ -29,6 +29,8 @@ public class MemberDao {
 			pstmt.setString(4, member.getLevel());
 			pstmt.setString(5, member.getGender());
 			pstmt.setString(6, member.getAddr());
+			pstmt.setString(7, member.getYumu()); //대출 유무 입력
+			pstmt.setInt(8, member.getBookCount()); //대출권수 입력
 			
 			pstmt.executeUpdate(); //쿼리문 실행
 

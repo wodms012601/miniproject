@@ -5,8 +5,11 @@
 	//도서상세정보에서 받은 도서 no값
 	int bookNo = Integer.parseInt(request.getParameter("no"));
 
+	//로그인 후 세션에 저장한 아이디값
+	String mId = (String)session.getAttribute("mId");
+
 	BookOutReturn bookReturn = new BookOutReturn();
-	bookReturn.checkIn(bookNo); //도서반납메서드 호출
+	bookReturn.checkIn(bookNo, mId); //도서반납메서드 호출
 	
 	System.out.println("반납완료");
 	

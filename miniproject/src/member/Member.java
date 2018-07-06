@@ -9,6 +9,8 @@ public class Member {
 	private String level;
 	private String gender;
 	private String addr;
+	private String yumu;
+	private int bookCount;
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -51,5 +53,17 @@ public class Member {
 	}
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+	public String getYumu() {
+		return yumu;
+	}
+	public void setYumu(String yumu) {
+		this.yumu = yumu;
+	}
+	public int getBookCount() {
+		return bookCount;
+	}
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
 	}
 }

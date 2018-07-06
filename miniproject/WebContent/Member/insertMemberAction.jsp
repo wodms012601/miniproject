@@ -12,6 +12,8 @@
 	member.setLevel(request.getParameter("level"));
 	member.setGender(request.getParameter("gender"));
 	member.setAddr(request.getParameter("addr"));
+	member.setYumu("무"); //대출 유무 입력
+	member.setBookCount(0); //대출권수 입력
 	
 	//회원가입 처리 메서드 호출
 	MemberDao dao = new MemberDao();
