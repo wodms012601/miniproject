@@ -9,7 +9,7 @@
 
 <form action="<%=request.getContextPath() %>/books/selectBookSearch.jsp" method="post">
 	<div>
-		<h3>도서 기간별 검색<h3></h5><br>
+		<h3>도서 기간별 검색<h3><br>
 		<input type = "date" name = "begin" >검색 시작 날짜<br> 
 		<input type = "date" name = "end" >검색 종료 날짜<br>
 	</div>

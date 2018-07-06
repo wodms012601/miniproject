@@ -3,7 +3,7 @@
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <%
-	int currentPage = 1;
+	int currentPage = 0;
 	int pagePerRow = 4;
 	String mName = (String)session.getAttribute("mName"); //로그인 후 세션에 저장한 이름값
 	
@@ -22,7 +22,7 @@
 			<section id="top">
 				<a id="logo" href="./indexed.jsp"><img src="img/logo.gif"></a>
 				<div id="search">
-					<div id="search_title"><a href="<%=request.getContextPath() %>/books/selectBookSearch.jsp?no=go">도서검색</div>
+					<div id="search_title"><a href="<%=request.getContextPath() %>/books/selectBookSearch.jsp">도서검색</a></div>
 					<div id="search_button"><img src="img/btn_search.gif"></div>
 				</div>
 				<nav id="top_menu">
