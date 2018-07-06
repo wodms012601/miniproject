@@ -3,7 +3,7 @@
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <%
-	int currentPage = 1;
+	int currentPage = 0;
 	int pagePerRow = 4;
 	String mName = (String)session.getAttribute("mName"); //로그인 후 세션에 저장한 이름값
 	
