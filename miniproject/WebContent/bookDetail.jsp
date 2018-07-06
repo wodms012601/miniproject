@@ -63,10 +63,16 @@
 				출판사 : <%=book.getBook_publisher() %><br><br>
 				요약 : <%=book.getBook_short() %><br><br>
 				내용 : <%=book.getBook_contents() %><br>
+			<%
+				if(mId != null){
+			%>
 				<div id="id">
 					<a href="<%=request.getContextPath() %>/Checkoutbook/bookOut.jsp?no=<%=bookNo %>"><img src="img/DC.png"></a> 
 					<a href="<%=request.getContextPath() %>/Checkoutbook/bookReturn.jsp?no=<%=bookNo %>"><img src="img/BN.png"></a>
 				</div>
+			<%
+				}
+			%>
 			</section>
 		</section>
 		<div class="clear"></div>

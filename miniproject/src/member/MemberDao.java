@@ -119,7 +119,7 @@ public class MemberDao {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 			System.out.println("연결 확인");
 			
-			pstmt = conn.prepareStatement("select member_no, m_id, m_name, m_addr from member where member_no=?"); //쿼리문준비
+			pstmt = conn.prepareStatement("select member_no, m_id, m_name, m_level, m_gender, m_addr from member where member_no=?"); //쿼리문준비
 			
 			pstmt.setInt(1, MemberNo);
 			
@@ -170,7 +170,7 @@ public class MemberDao {
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
 				System.out.println("연결 확인");
 				
-				pstmt = conn.prepareStatement("select member_no, m_id, m_name, m_addr from member where m_id=?"); //쿼리문준비
+				pstmt = conn.prepareStatement("select member_no, m_id, m_name, m_level, m_gender, m_addr from member where m_id=?"); //쿼리문준비
 				
 				pstmt.setString(1, mId);
 				

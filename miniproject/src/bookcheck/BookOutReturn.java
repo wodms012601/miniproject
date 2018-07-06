@@ -3,14 +3,16 @@ package bookcheck;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import books.booksManagement;
 
 public class BookOutReturn {
 	
 	//대출 처리 메서드
-	public void checkOut(booksManagement books) { //책이름, 카테고리, 아이디,
+	public void checkOut(booksManagement books, String mId) { //책이름, 카테고리, 아이디,
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -21,9 +23,10 @@ public class BookOutReturn {
 			System.out.println("연결 확인");
 			
 			//date_add()메서드를 사용해 빌린날짜로부터 2달 이후의 날짜를 입력한다.
-			pstmt = conn.prepareStatement("insert into books_out_in(m_id, book_cate, book_name, book_out_date, book_limit_date) values(?,?,?,now(),date_add(now(), interval 2 month)"); //쿼리문준비
+			pstmt = conn.prepareStatement("insert into books_out_in(m_id, book_cate, book_name, book_out_date, book_limit_date) values(?,?,?,now(),date_add(now(), interval 2 month))"); //쿼리문준비
 			
 			//1번 인덱스에는 세션에서 받은 아이디값
+			pstmt.setString(1, mId);
 			pstmt.setString(2, books.getBook_cate());
 			pstmt.setString(3, books.getBook_name());
 			
@@ -64,7 +67,6 @@ public class BookOutReturn {
 			
 			pstmt = conn.prepareStatement("update books_out_in set book_in_date=now() where logs=?"); //쿼리문준비
 			
-			//1번 인덱스에는 세션에서 받은 아이디값
 			pstmt.setInt(1, bookNo);
 			
 			pstmt.executeUpdate(); //쿼리문 실행
@@ -89,5 +91,57 @@ public class BookOutReturn {
 				}
 			}
 		}
+	}
+	
+	public ArrayList<BookCheck> bookCheck(){
+		ArrayList<BookCheck> books = new ArrayList<BookCheck>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); //드라이버 로딩
+				
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books_db01?useUnicode=true&characterEncoding=euckr", "books_id01", "books_pw01"); //db연결
+			System.out.println("연결 확인");
+			
+			pstmt = conn.prepareStatement("select logs, m_id, book_cate, book_name, book_out_date, book_limit_date, book_in_date from books_out_in"); //쿼리문준비
+			
+			rs = pstmt.executeQuery(); //쿼리문 실행
+			
+			while(rs.next()) {
+				BookCheck book = new BookCheck(); //대출,반납 데이터가 들어갈수있는 객체 생성
+				book.setLogs(rs.getInt("logs")); //데이터 입력
+				book.setmId(rs.getString("m_id"));
+				book.setBookCate(rs.getString("book_cate"));
+				book.setBookName(rs.getString("book_name"));
+				book.setBookOutDate(rs.getString("book_out_date"));
+				book.setBookLimitDate(rs.getString("book_limit_date"));
+				book.setBookInDate(rs.getString("book_in_date"));
+				
+				books.add(book); //한번 반복할때마다 객체주소를 배열객체에 저장
+			}
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return books;
 	}
 }

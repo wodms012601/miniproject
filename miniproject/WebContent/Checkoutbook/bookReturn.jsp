@@ -8,6 +8,6 @@
 	BookOutReturn bookReturn = new BookOutReturn();
 	bookReturn.checkIn(bookNo); //도서반납메서드 호출
 	
-	//모든 처리가 끝나면 도서리스트로 이동
-	response.sendRedirect(request.getContextPath() + "/books/bookList.jsp");
+	//모든 처리가 끝나면 대출,반납리스트로 이동
+	response.sendRedirect(request.getContextPath() + "/Checkoutbook/bookOutReturnList.jsp");
 %>
